@@ -1,0 +1,5 @@
+RewriteCond %{REQUEST_PATH} !-f
+RewriteRule ^(.*)$ /chubb-life-qni-admin
+
+
+<Valve className="org.apache.catalina.valves.rewrite.RewriteValve" />    

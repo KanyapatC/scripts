@@ -1,0 +1,35 @@
+#!/bin/bash
+##
+## tomcat
+##
+## chkconfig:
+## description: Start up the Tomcat service engine.
+#
+## Source function library.
+. /etc/init.d/functions
+
+RETVAL=$?
+export TOMCAT_HOME="<yournamefile>"
+
+case "$1" in
+ start)
+        if [ -f $TOMCAT_HOME/bin/startup.sh ];
+                 then
+                 echo $"Starting Tomcat"
+                        /bin/sh -c $TOMCAT_HOME/bin/catalina.sh start
+                        fi
+                 ;;
+ stop)
+        if [ -f $TOMCAT_HOME/bin/shutdown.sh ];
+                 then
+                 echo $"Stopping Tomcat"
+                        /bin/sh -c $TOMCAT_HOME/bin/catalina.sh stop
+                        fi
+                 ;;
+    *)
+                 echo $"Usage: $0 {start|stop|restart}"
+                 exit 1
+                 ;;
+        esac
+
+        exit $RETVAL

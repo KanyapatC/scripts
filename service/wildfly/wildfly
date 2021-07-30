@@ -1,0 +1,27 @@
+#!/bin/sh
+### BEGIN INIT INFO
+
+# Description: Start/Stop Wildfly
+### END INIT INFO
+#
+#source some script files in order to set and export environmental variables
+#as well as add the appropriate executables to $PATH
+
+export WILDFLY_HOME=<YourPath>
+
+case "$1" in
+    start)
+        echo "Starting <YourService>"
+        /bin/sh ${WILDFLY_HOME}/bin/standalone.sh > /dev/null 2>&1&
+    ;;
+    stop)
+        echo "Stopping <YourService>"
+        /bin/sh ${WILDFLY_HOME}/bin/jboss-cli.sh --connect command=:shutdown > /dev/null 2>&1&
+    ;;
+    *)
+        echo "Usage: /etc/init.d/wildfly {start|stop}"
+        exit 1
+    ;;
+esac
+
+exit 0
