@@ -39,8 +39,8 @@ passwd oracle
 ```bash
 mkdir /u01/java
 mkdir /u01/oracle
-mkdir /u01/scripts
 mkdir /u01/setup
+mkdir /home/oracle/scripts
 ```
 
 3. Add execute permission user `oracle` and group `oinstall` to /u01.
