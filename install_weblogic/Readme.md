@@ -15,13 +15,13 @@ yum update
 3. Open the file `/etc/hostname`, change the content to update the hostname.
 
 ```
-ol8-19.localdomain
+localhost.localdomain
 ```
 
 2. Open the file `/etc/hosts`, add your IP address and hostname.
 
 ```
-192.168.122.1 ol8-19.localdomain
+<Your IP Address>  localhost.localdomain
 ```
 
 ## Create directory necessary for Software
@@ -197,7 +197,7 @@ vim start_all.sh
   nohup /u01/oracle/middleware/wls12214/user_projects/domains/base_domain/bin/startWebLogic.sh > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Admin.out 2>&1 &
   sleep 10
 
-  nohup /u01/oracle/middleware/wls12214/user_projects/domains/base_domain/bin/startManagedWebLogic.sh Server1 t3://chubblife-icom-app.motif.corp:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1 &
+  nohup /u01/oracle/middleware/wls12214/user_projects/domains/base_domain/bin/startManagedWebLogic.sh Server1 t3://<Your hostname or ip address>:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1 &
 ```
 
 ```bash
@@ -209,7 +209,7 @@ vim stop_all.sh
 
 # Define Stop steps
 
-  nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/stopManagedWebLogic.sh Server1 t3://chubblife-icom-app.motif.corp:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1 &
+  nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/stopManagedWebLogic.sh Server1 t3://<Your hostname or ip address>:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1 &
   sleep 10
   nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/stopWebLogic.sh > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Admin.out 2>&1 &
 ```
@@ -223,7 +223,7 @@ vim weblogic.sh
   nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/startWebLogic.sh > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Admin.out 2>&1&
   sleep 10
 
-  nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/startManagedWebLogic.sh Server1 t3://chubblife-icom-app.motif.corp:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1&
+  nohup /u01/oracle/wls12214/user_projects/domains/base_domain/bin/startManagedWebLogic.sh Server1 t3://<Your hostname or ip address>:7001 > /u01/oracle/wls12214/user_projects/domains/base_domain/bin/nohup-Server1.out 2>&1&
 ```
 
 ** Please use the `root` user to execute the commands unless further notice. **
