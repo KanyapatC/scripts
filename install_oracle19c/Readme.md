@@ -388,7 +388,7 @@ crontab -e
 sqlplus / as sysdba
 SELECT tablespace_name FROM dba_Tablespaces;
 CREATE TABLESPACE "<Your Name>" DATAFILE 
-  '/u02/oradata/<Your Name>_tbs01.dbf' SIZE 25G AUTOEXTEND ON;
+  '/u01/oradata/<Your Name>_tbs01.dbf' SIZE 25G AUTOEXTEND ON;
 SELECT tablespace_name FROM dba_Tablespaces;
 ```
 
