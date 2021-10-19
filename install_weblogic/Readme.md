@@ -71,7 +71,7 @@ alternatives --install /usr/bin/java java /u01/java/jdk1.8.0_291/bin/java 2
 alternatives --config java
 # Select your java install
 alternatives --install /usr/bin/jar jar /u01/java/jdk1.8.0_291/bin/jar 2
-alternatives --install /usr/bin/javac javac /tlegal/app/lms/java/amazon-correntto8.212.04.2/bin/javac 2
+alternatives --install /usr/bin/javac javac /u01/java/jdk1.8.0_291/bin/javac 2
 alternatives --set jar /u01/java/jdk1.8.0_291/bin//bin/jar
 alternatives --set javac /u01/java/jdk1.8.0_291/bin/bin/javac
 ```
