@@ -17,8 +17,8 @@ dnf -y install elfutils-libelf-devel
 
 ```bash
 mkdir /u01/app
-mkdir /u01/oracle
-mkdir /u01/scripts
+mkdir /u01/app/oracle
+mkdir /u01/app/oraInventory
 mkdir /u01/setup
 ```
 ## Hostname and Host File
@@ -26,13 +26,13 @@ mkdir /u01/setup
 1. Open the file `/etc/hostname`, change the content to update the hostname.
 
 ```
-ol8-19.localdomain
+localhost.localdomain
 ```
 
 2. Open the file `/etc/hosts`, add your IP address and hostname.
 
 ```
-192.168.122.1 ol8-19.localdomain
+<Your IP Address> localhost.localdomain
 ```
 ## Download Packages and Software in /u01/setup
 
@@ -252,7 +252,7 @@ swapon /tmp/additional-swap
 ```
 
 ## Install Oracle Database
-
+Your client must client software "xming" for display (X11) 
 1. Set the DISPLAY variable with **`oracle` user**.
 
 ```bash
@@ -387,8 +387,8 @@ crontab -e
 ```bash
 sqlplus / as sysdba
 SELECT tablespace_name FROM dba_Tablespaces;
-CREATE TABLESPACE "ACS" DATAFILE 
-  '/u02/oradata/icom_pay_tbs01.dbf' SIZE 25G AUTOEXTEND ON;
+CREATE TABLESPACE "<Your Name>" DATAFILE 
+  '/u02/oradata/<Your Name>_tbs01.dbf' SIZE 25G AUTOEXTEND ON;
 SELECT tablespace_name FROM dba_Tablespaces;
 ```
 
@@ -396,43 +396,43 @@ SELECT tablespace_name FROM dba_Tablespaces;
 
 ```sql
 -- ALTER SESSION SET "_ORACLE_SCRIPT"=true;
--- DROP USER newuser CASCADE;
-CREATE USER newuser IDENTIFIED BY "P@ssw0rd";
-alter user newuser default tablespace my_tablespace;
+-- DROP USER <YourUser> CASCADE;
+CREATE USER <YourUser> IDENTIFIED BY "<Your Password>";
+alter user <YourUser> default tablespace <Your Tablespace>;
 ```
 
 6. Grant permissions to the new user.
 
 ```sql
--- REVOKE CREATE SESSION FROM newuser;
--- REVOKE CREATE TABLE FROM newuser;
--- REVOKE CREATE VIEW FROM newuser;
--- REVOKE CREATE ANY TRIGGER FROM newuser;
--- REVOKE CREATE ANY PROCEDURE FROM newuser;
--- REVOKE CREATE SEQUENCE FROM newuser;
--- REVOKE CREATE SYNONYM FROM newuser;
-GRANT CREATE SESSION TO newuser;
-GRANT CREATE TABLE TO newuser;
-GRANT CREATE VIEW TO newuser;
-GRANT CREATE ANY TRIGGER TO newuser;
-GRANT CREATE ANY PROCEDURE TO newuser;
-GRANT CREATE SEQUENCE TO newuser;
-GRANT CREATE SYNONYM TO newuser;
+-- REVOKE CREATE SESSION FROM <YourUser>;
+-- REVOKE CREATE TABLE FROM <YourUser>;
+-- REVOKE CREATE VIEW FROM <YourUser>;
+-- REVOKE CREATE ANY TRIGGER FROM <YourUser>;
+-- REVOKE CREATE ANY PROCEDURE FROM <YourUser>;
+-- REVOKE CREATE SEQUENCE FROM <YourUser>;
+-- REVOKE CREATE SYNONYM FROM <YourUser>;
+GRANT CREATE SESSION TO <YourUser>;
+GRANT CREATE TABLE TO <YourUser>;
+GRANT CREATE VIEW TO <YourUser>;
+GRANT CREATE ANY TRIGGER TO <YourUser>;
+GRANT CREATE ANY PROCEDURE TO <YourUser>;
+GRANT CREATE SEQUENCE TO <YourUser>;
+GRANT CREATE SYNONYM TO <YourUser>;
 
-ALTER USER newuser QUOTA UNLIMITED ON my_tablespace;
+ALTER USER <YourUser> QUOTA UNLIMITED ON <Your Tablespace>;
 ```
 
 7. [Optional] Grant DBA to the new user.
 
 ```sql
--- REVOKE DBA FROM newuser;
-GRANT DBA TO newuser;
+-- REVOKE DBA FROM <Your Tablespace>;
+GRANT DBA TO <Your Tablespace>;
 ```
 # Import / Export Database 19C
 ```sql
 # Export
-expdp \"SYS/<yourpassword>@orcl as sysdba\"  directory=DATA_PUMP_DIR dumpfile=CHUBB-ACS-DEV87-ORCL-20210702.dmp logfile=imp_chubb-ACS-dev87-orcl-20210702.log Full=y
+expdp \"SYS/<yourpassword>@orcl as sysdba\"  directory=DATA_PUMP_DIR dumpfile=<Your_name_database>.dmp logfile=exp_<Your_name_database>.log Full=y
 # Import
-impdp \"SYS/<yourpassword>@orcl as sysdba\"  directory=DATA_PUMP_DIR dumpfile=CHUBB-ACS-DEV87-ORCL-20210702.dmp logfile=imp_chubb-ACS-dev87-orcl-20210702.log Full=y
+impdp \"SYS/<yourpassword>@orcl as sysdba\"  directory=DATA_PUMP_DIR dumpfile=<Your_name_database>.dmp logfile=imp_<Your_name_database>.log Full=y
 ```
 
