@@ -63,10 +63,7 @@ cd /u01/setup/
 tar -zxvf jdk-8u291-linux-X64.tar.gz
 mv jdk1.8.0_291  /u01/java
 ```
-```bash
-tar -zxvf jdk-8u291-linux-X64.tar.gz
-mv jdk1.8.0_291  /u01/java
-```
+
 ** Please use the `root` user to execute the commands install Java. **
 
 ```bash
